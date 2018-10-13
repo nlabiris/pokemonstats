@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PokemonStats_WPF.View
+namespace PokemonStats_WPF.Views
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
