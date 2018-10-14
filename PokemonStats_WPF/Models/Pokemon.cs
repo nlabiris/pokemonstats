@@ -11,6 +11,17 @@ namespace PokemonStats_WPF.Models {
         public int IndexNumber { get; set; }
 
         public string Name { get; set; }
+
+        [DisplayName("Type 1")]
+        public string Type1 { get; set; }
+
+        [DisplayName("Type 2")]
+        public string Type2 { get; set; }
+
+        public byte[] Type1_Image { get; set; }
+
+        public byte[] Type2_Image { get; set; }
+
         public string Color { get; set; }
         public string Shape { get; set; }
         public string Habitat { get; set; }
@@ -21,7 +32,7 @@ namespace PokemonStats_WPF.Models {
         [DisplayName("Capture rate")]
         public int CaptureRate { get; set; }
 
-        [DisplayName("Base happiness rate")]
+        [DisplayName("Base happiness")]
         public int BaseHappiness { get; set; }
 
         [DisplayName("Growth rate")]
@@ -43,6 +54,10 @@ namespace PokemonStats_WPF.Models {
         public string HiddenAbility { get; set; }
 
         public string SpeciesSummary { get; set; }
+
+        public byte[] Icon { get; set; }
+
+        public byte[] Sprite { get; set; }
 
         public string Details {
             get {

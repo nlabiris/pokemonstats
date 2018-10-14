@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokemonStats_WPF.Views"
+        xmlns:converters ="clr-namespace:PokemonStats_WPF.Views.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Pokemon Stats" Height="450" Width="800">
+    <Window.Resources>
+        <converters:TypeConverter x:Key="TypeConverter" />
+        <converters:HeightConverter x:Key="HeightConverter" />
+        <converters:WeightConverter x:Key="WeightConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -62,7 +68,39 @@
             </DataGrid.ContextMenu>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding SpeciesSummary}" Margin="10" />
+                    <DockPanel Background="GhostWhite">
+                        <TextBlock DockPanel.Dock="Left"></TextBlock>
+                        <Image DockPanel.Dock="Left" Source="{Binding Icon}" Height="50" Width="40" Margin="5" />
+                        <Grid Margin="0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Type: " FontWeight="Bold" Grid.Row="0" />
+                            <WrapPanel Grid.Column="1" Grid.Row="0">
+                                <Image Source="{Binding Type1_Image}" Height="13" Width="30" />
+                                <Image Source="{Binding Type2_Image}" Height="13" Width="30" />
+                            </WrapPanel>
+                            <!--<TextBlock Grid.Column="1" Grid.Row="0">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource TypeConverter}">
+                                        <Binding Path="Type1" />
+                                        <Binding Path="Type2" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>-->
+                            <TextBlock Text="Height: " FontWeight="Bold" Grid.Row="1" />
+                            <TextBlock Text="{Binding Height, Converter={StaticResource HeightConverter}}" Grid.Column="1" Grid.Row="1" />
+                            <TextBlock Text="Weight: " FontWeight="Bold" Grid.Row="2" />
+                            <TextBlock Text="{Binding Weight, Converter={StaticResource WeightConverter}}" Grid.Column="1" Grid.Row="2" />
+                        </Grid>
+                        <TextBlock DockPanel.Dock="Bottom" Text="{Binding SpeciesSummary}" Margin="10" />
+                    </DockPanel>
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>

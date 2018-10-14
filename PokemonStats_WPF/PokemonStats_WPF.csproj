@@ -82,6 +82,9 @@
     <Compile Include="Helper\Utility.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="ViewModels\PokemonViewModel.cs" />
+    <Compile Include="Views\Converters\HeightConverter.cs" />
+    <Compile Include="Views\Converters\TypeConverter.cs" />
+    <Compile Include="Views\Converters\WeightConverter.cs" />
     <Compile Include="Views\Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>

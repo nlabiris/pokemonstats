@@ -41,6 +41,12 @@ namespace PokemonStats_WPF.Views {
             switch (e.Column.Header.ToString()) {
                 case "Details":
                 case "SpeciesSummary":
+                case "Icon":
+                case "Sprite":
+                case "Type1_Image":
+                case "Type2_Image":
+                case "Height":
+                case "Weight":
                     e.Cancel = true;
                     break;
             }

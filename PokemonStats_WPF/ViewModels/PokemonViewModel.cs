@@ -41,11 +41,13 @@ namespace PokemonStats_WPF.ViewModels {
         }
 
         public bool PokemonsFilter(object item) {
-            if (string.IsNullOrEmpty(_filterString)) {
+            if (String.IsNullOrEmpty(_filterString)) {
                 return true;
             } else {
                 return (
                     ((item as Pokemon).Name.IndexOf(_filterString, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                    ((item as Pokemon).Type1.IndexOf(_filterString, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                    ((item as Pokemon).Type2.IndexOf(_filterString, StringComparison.OrdinalIgnoreCase) >= 0) ||
                     ((item as Pokemon).Color.IndexOf(_filterString, StringComparison.OrdinalIgnoreCase) >= 0) ||
                     ((item as Pokemon).Shape.IndexOf(_filterString, StringComparison.OrdinalIgnoreCase) >= 0) ||
                     ((item as Pokemon).Ability1.IndexOf(_filterString, StringComparison.OrdinalIgnoreCase) >= 0) ||
@@ -67,6 +69,10 @@ namespace PokemonStats_WPF.ViewModels {
                             Pokemon p = new Pokemon {
                                 IndexNumber = reader.CheckValue<int>("pokemon_id"),
                                 Name = reader.CheckObject<string>("name"),
+                                Type1 = reader.CheckObject<string>("type1") != null ? reader.CheckObject<string>("type1") : "",
+                                Type2 = reader.CheckObject<string>("type2") != null ? reader.CheckObject<string>("type2") : "",
+                                Type1_Image = reader.CheckObject<byte[]>("type1_image"),
+                                Type2_Image = reader.CheckObject<byte[]>("type2_image"),
                                 Color = reader.CheckObject<string>("color"),
                                 Shape = reader.CheckObject<string>("shape"),
                                 Habitat = reader.CheckObject<string>("habitat"),
@@ -79,8 +85,10 @@ namespace PokemonStats_WPF.ViewModels {
                                 BaseExperience = reader.CheckValue<int>("base_experience"),
                                 Ability1 = reader.CheckObject<string>("ability1") != null ? reader.CheckObject<string>("ability1") : "",
                                 Ability2 = reader.CheckObject<string>("ability2") != null ? reader.CheckObject<string>("ability2") : "",
-                                HiddenAbility = reader.CheckObject<string>("hidden_ability") != null ? reader.CheckObject<string>("hidden_ability") : "",
-                                SpeciesSummary = reader.CheckObject<string>("species_summary")?.Replace("\r\n", " ")
+                                HiddenAbility = reader.CheckObject<string>("hidden_ability") ?? "",
+                                SpeciesSummary = reader.CheckObject<string>("species_summary")?.Replace("\r\n", " "),
+                                Icon = reader.CheckObject<byte[]>("icon"),
+                                Sprite = reader.CheckObject<byte[]>("sprite")
                             };
                             pokemons.Add(p);
                         }

@@ -16,7 +16,35 @@ SELECT `pokemon`.`id` AS `pokemon_id`,
     WHERE `pokemon_species_names`.`local_language_id` = 9
     AND `pokemon`.`id` = `pokemon_id`
     LIMIT 1
-) AS `name`, 
+) AS `name`,
+(
+    SELECT `types`.`identifier`
+    FROM `types`
+    INNER JOIN `pokemon_types` ON `pokemon_types`.`type_id` = `types`.`id`
+    WHERE `pokemon_types`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1
+) AS `type1`,
+(
+    SELECT `types`.`identifier`
+    FROM `types`
+    INNER JOIN `pokemon_types` ON `pokemon_types`.`type_id` = `types`.`id`
+    WHERE `pokemon_types`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1,1
+) AS `type2`,
+(
+    SELECT `types`.`image`
+    FROM `types`
+    INNER JOIN `pokemon_types` ON `pokemon_types`.`type_id` = `types`.`id`
+    WHERE `pokemon_types`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1
+) AS `type1_image`,
+(
+    SELECT `types`.`image`
+    FROM `types`
+    INNER JOIN `pokemon_types` ON `pokemon_types`.`type_id` = `types`.`id`
+    WHERE `pokemon_types`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1,1
+) AS `type2_image`,
 (
     SELECT `pokemon_color_names`.`name`
     FROM `pokemon_color_names`
@@ -110,7 +138,19 @@ SELECT `pokemon`.`id` AS `pokemon_id`,
     AND `pokemon_species_flavor_text`.`version_id` = 21
     AND `pokemon_species_flavor_text`.`language_id` = 9
     LIMIT 1
-) AS `species_summary`
+) AS `species_summary`,
+(
+    SELECT `pokemon_forms`.`icon`
+    FROM `pokemon_forms`
+    WHERE `pokemon_forms`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1
+) AS `icon`,
+(
+    SELECT `pokemon_forms`.`sprite`
+    FROM `pokemon_forms`
+    WHERE `pokemon_forms`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1
+) AS `sprite`
 FROM `pokemon`
 WHERE `pokemon`.`id` <= 721;";
             }
@@ -129,6 +169,20 @@ SELECT `pokemon`.`id` AS `pokemon_id`,
     AND `pokemon`.`id` = `pokemon_id`
     LIMIT 1
 ) AS `name`, 
+(
+    SELECT `types`.`identifier`
+    FROM `types`
+    INNER JOIN `pokemon_types` ON `pokemon_types`.`type_id` = `types`.`id`
+    WHERE `pokemon_types`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1
+) AS `type1`,
+(
+    SELECT `types`.`identifier`
+    FROM `types`
+    INNER JOIN `pokemon_types` ON `pokemon_types`.`type_id` = `types`.`id`
+    WHERE `pokemon_types`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1,1
+) AS `type2`,
 (
     SELECT `pokemon_color_names`.`name`
     FROM `pokemon_color_names`
@@ -214,7 +268,27 @@ SELECT `pokemon`.`id` AS `pokemon_id`,
     AND `pokemon_abilities`.`is_hidden` = 1
     AND `ability_names`.`local_language_id` = 9
     LIMIT 2
-) AS `hidden_ability`
+) AS `hidden_ability`,
+(
+    SELECT `pokemon_species_flavor_text`.`flavor_text`
+    FROM `pokemon_species_flavor_text`
+    WHERE `pokemon_species_flavor_text`.`species_id` = `pokemon`.`species_id`
+    AND `pokemon_species_flavor_text`.`version_id` = 21
+    AND `pokemon_species_flavor_text`.`language_id` = 9
+    LIMIT 1
+) AS `species_summary`,
+(
+    SELECT `pokemon_forms`.`icon`
+    FROM `pokemon_forms`
+    WHERE `pokemon_forms`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1
+) AS `icon`,
+(
+    SELECT `pokemon_forms`.`sprite`
+    FROM `pokemon_forms`
+    WHERE `pokemon_forms`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1
+) AS `sprite`
 FROM `pokemon`
 WHERE `pokemon`.`id` = @pokemon_id";
             }

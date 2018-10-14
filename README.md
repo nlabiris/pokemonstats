@@ -5,6 +5,8 @@
 
 A simple Pokédex written in C# using [WPF](https://docs.microsoft.com/en-us/dotnet/framework/wpf/getting-started/). All the data are comes from [veekun pokedex](https://github.com/veekun/pokedex) and are hosted in a MySQL server. The solution is created using Visual Studio 2017.
 
+![](https://i.imgur.com/XRGt4W2.png)
+
 ## Prerequisites
 
 * [Visual Studio 2017 version 15.7.3 or later](https://www.microsoft.com/net/download/windows) with the following workloads:
