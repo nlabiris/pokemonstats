@@ -5,213 +5,222 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokemonStats_WPF.Views"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800">
+        Title="Window1" Height="300" Width="850">
     <Window.Resources>
         <Style TargetType="{x:Type Border}">
-            <Setter Property="Margin" Value="0,3,0,0"/>
-            <Setter Property="CornerRadius" Value="3"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="LightGray"/>
         </Style>
     </Window.Resources>
-    <Grid Margin="5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <WrapPanel Grid.Column="0" Grid.Row="0">
-            <GroupBox Header="Image">
-                <Image VerticalAlignment="Top" Height="100" Width="100">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" />
+                <MenuItem Header="_Open" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Column="0" Grid.Row="0">
+                <GroupBox Header="Image">
+                    <Image VerticalAlignment="Top" Height="100" Width="100">
 
-                </Image>
-            </GroupBox>
-            <GroupBox Header="Details">
-                <StackPanel>
+                    </Image>
+                </GroupBox>
+                <GroupBox Header="Details">
+                    <StackPanel>
+                        <WrapPanel>
+                            <StackPanel Margin="5">
+                                <TextBlock>Level</TextBlock>
+                                <Border>
+                                    <TextBox Width="30">100</TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="5">
+                                <TextBlock>Happiness</TextBlock>
+                                <Border Width="30">
+                                    <TextBox>100</TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="5">
+                                <TextBlock>Gender</TextBlock>
+                                <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="40">
+                                    <ComboBoxItem>Male</ComboBoxItem>
+                                    <ComboBoxItem>Female</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Margin="5">
+                                <TextBlock>Shiny</TextBlock>
+                                <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="40">
+                                    <ComboBoxItem>No</ComboBoxItem>
+                                    <ComboBoxItem>Yes</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <StackPanel Margin="5">
+                                <TextBlock>Pokemon</TextBlock>
+                                <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
+                                    <ComboBoxItem>Mudkip</ComboBoxItem>
+                                    <ComboBoxItem>Swampert</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Margin="5">
+                                <TextBlock>Item</TextBlock>
+                                <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
+                                    <ComboBoxItem>Choice Band</ComboBoxItem>
+                                    <ComboBoxItem>Life Orb</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Margin="5">
+                                <TextBlock>Ability</TextBlock>
+                                <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
+                                    <ComboBoxItem>Blaze</ComboBoxItem>
+                                    <ComboBoxItem>Torrent</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                        </WrapPanel>
+                        <WrapPanel Margin="0,5,0,0">
+                            <GroupBox Header="Moves" Width="190">
+                                <StackPanel Margin="3">
+                                    <Border>
+                                        <TextBox>Stealth Rock</TextBox>
+                                    </Border>
+                                    <Border>
+                                        <TextBox>Waterfall</TextBox>
+                                    </Border>
+                                    <Border>
+                                        <TextBox>Earthquake</TextBox>
+                                    </Border>
+                                    <Border>
+                                        <TextBox>Roar</TextBox>
+                                    </Border>
+                                </StackPanel>
+                            </GroupBox>
+                        </WrapPanel>
+                    </StackPanel>
+                </GroupBox>
+            </WrapPanel>
+            <WrapPanel Grid.Column="2" Grid.Row="0">
+                <GroupBox Header="Stats">
                     <WrapPanel>
-                        <StackPanel Margin="5">
-                            <TextBlock>Level</TextBlock>
-                            <Border>
-                                <TextBox Width="30">100</TextBox>
-                            </Border>
+                        <StackPanel>
+                            <TextBlock>Base</TextBlock>
+                            <TextBlock></TextBlock>
+                            <WrapPanel>
+                                <StackPanel>
+                                    <TextBlock Margin="5">HP</TextBlock>
+                                    <TextBlock Margin="5">Atk</TextBlock>
+                                    <TextBlock Margin="5">Def</TextBlock>
+                                    <TextBlock Margin="5">SpA</TextBlock>
+                                    <TextBlock Margin="5">SpD</TextBlock>
+                                    <TextBlock Margin="5">Spe</TextBlock>
+                                </StackPanel>
+                                <StackPanel Margin="10,0,0,0">
+                                    <Border Margin="3">
+                                        <TextBox Width="30">80</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">120</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">70</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">110</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">70</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">80</TextBox>
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel Margin="10,0,0,0">
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
+                                </StackPanel>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,13,0,0">
+                                <TextBlock Padding="0,2,12,0">Nature</TextBlock>
+                                <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
+                                    <ComboBoxItem>Blaze</ComboBoxItem>
+                                    <ComboBoxItem>Torrent</ComboBoxItem>
+                                </ComboBox>
+                                <TextBlock FontWeight="Bold" Padding="55,2,0,0">Remaining:</TextBlock>
+                            </WrapPanel>
                         </StackPanel>
-                        <StackPanel Margin="5">
-                            <TextBlock>Happiness</TextBlock>
-                            <Border Width="30">
-                                <TextBox>100</TextBox>
-                            </Border>
+                        <StackPanel>
+                            <TextBlock>EVs</TextBlock>
+                            <TextBlock></TextBlock>
+                            <WrapPanel>
+                                <StackPanel>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">6</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">252</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">0</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">0</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">0</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">252</TextBox>
+                                    </Border>
+                                </StackPanel>
+                            </WrapPanel>
+                            <TextBlock Padding="7,15,0,0">510</TextBlock>
                         </StackPanel>
-                        <StackPanel Margin="5">
-                            <TextBlock>Gender</TextBlock>
-                            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="40">
-                                <ComboBoxItem>Male</ComboBoxItem>
-                                <ComboBoxItem>Female</ComboBoxItem>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Margin="5">
-                            <TextBlock>Shiny</TextBlock>
-                            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="40">
-                                <ComboBoxItem>No</ComboBoxItem>
-                                <ComboBoxItem>Yes</ComboBoxItem>
-                            </ComboBox>
+                        <StackPanel>
+                            <TextBlock>IVs</TextBlock>
+                            <TextBlock></TextBlock>
+                            <WrapPanel>
+                                <StackPanel>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">6</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">252</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">0</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">0</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">0</TextBox>
+                                    </Border>
+                                    <Border Margin="3">
+                                        <TextBox Width="30">252</TextBox>
+                                    </Border>
+                                </StackPanel>
+                            </WrapPanel>
                         </StackPanel>
                     </WrapPanel>
-                    <WrapPanel>
-                        <StackPanel Margin="5">
-                            <TextBlock>Pokemon</TextBlock>
-                            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
-                                <ComboBoxItem>Mudkip</ComboBoxItem>
-                                <ComboBoxItem>Swampert</ComboBoxItem>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Margin="5">
-                            <TextBlock>Item</TextBlock>
-                            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
-                                <ComboBoxItem>Choice Band</ComboBoxItem>
-                                <ComboBoxItem>Life Orb</ComboBoxItem>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Margin="5">
-                            <TextBlock>Ability</TextBlock>
-                            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
-                                <ComboBoxItem>Blaze</ComboBoxItem>
-                                <ComboBoxItem>Torrent</ComboBoxItem>
-                            </ComboBox>
-                        </StackPanel>
-                    </WrapPanel>
-                    <WrapPanel Margin="0,5,0,0">
-                        <GroupBox Header="Moves" Width="190">
-                            <StackPanel Margin="3">
-                                <Border>
-                                    <TextBox>Stealth Rock</TextBox>
-                                </Border>
-                                <Border>
-                                    <TextBox>Waterfall</TextBox>
-                                </Border>
-                                <Border>
-                                    <TextBox>Earthquake</TextBox>
-                                </Border>
-                                <Border>
-                                    <TextBox>Roar</TextBox>
-                                </Border>
-                            </StackPanel>
-                        </GroupBox>
-                    </WrapPanel>
-                </StackPanel>
-            </GroupBox>
-        </WrapPanel>
-        <WrapPanel Grid.Column="2" Grid.Row="0">
-            <GroupBox Header="Stats">
-                <WrapPanel>
-                    <StackPanel>
-                        <TextBlock>Base</TextBlock>
-                        <TextBlock></TextBlock>
-                        <WrapPanel>
-                            <StackPanel>
-                                <TextBlock Margin="5">HP</TextBlock>
-                                <TextBlock Margin="5">Atk</TextBlock>
-                                <TextBlock Margin="5">Def</TextBlock>
-                                <TextBlock Margin="5">SpA</TextBlock>
-                                <TextBlock Margin="5">SpD</TextBlock>
-                                <TextBlock Margin="5">Spe</TextBlock>
-                            </StackPanel>
-                            <StackPanel Margin="10,0,0,0">
-                                <Border Margin="3">
-                                    <TextBox Width="30">80</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">120</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">70</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">110</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">70</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">80</TextBox>
-                                </Border>
-                            </StackPanel>
-                            <StackPanel Margin="10,0,0,0">
-                                <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
-                                <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
-                                <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
-                                <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
-                                <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
-                                <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
-                            </StackPanel>
-                        </WrapPanel>
-                        <WrapPanel Margin="0,13,0,0">
-                            <TextBlock Padding="0,2,12,0">Nature</TextBlock>
-                            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
-                                <ComboBoxItem>Blaze</ComboBoxItem>
-                                <ComboBoxItem>Torrent</ComboBoxItem>
-                            </ComboBox>
-                            <TextBlock FontWeight="Bold" Padding="55,2,0,0">Remaining:</TextBlock>
-                        </WrapPanel>
-                    </StackPanel>
-                    <StackPanel>
-                        <TextBlock>EVs</TextBlock>
-                        <TextBlock></TextBlock>
-                        <WrapPanel>
-                            <StackPanel>
-                                <Border Margin="3">
-                                    <TextBox Width="30">6</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">252</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">0</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">0</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">0</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">252</TextBox>
-                                </Border>
-                            </StackPanel>
-                        </WrapPanel>
-                        <TextBlock Padding="7,15,0,0">510</TextBlock>
-                    </StackPanel>
-                    <StackPanel>
-                        <TextBlock>IVs</TextBlock>
-                        <TextBlock></TextBlock>
-                        <WrapPanel>
-                            <StackPanel>
-                                <Border Margin="3">
-                                    <TextBox Width="30">6</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">252</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">0</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">0</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">0</TextBox>
-                                </Border>
-                                <Border Margin="3">
-                                    <TextBox Width="30">252</TextBox>
-                                </Border>
-                            </StackPanel>
-                        </WrapPanel>
-                    </StackPanel>
-                </WrapPanel>
-            </GroupBox>
-        </WrapPanel>
-    </Grid>
+                </GroupBox>
+            </WrapPanel>
+        </Grid>
+    </DockPanel>
 </Window>

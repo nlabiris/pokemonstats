@@ -41,5 +41,13 @@ namespace PokemonStats_WPF.Models {
 
         [DisplayName("Hidden ability")]
         public string HiddenAbility { get; set; }
+
+        public string SpeciesSummary { get; set; }
+
+        public string Details {
+            get {
+                return String.Format("{0} is a {1} Pokemon.", Name, ((Ability2 != null) ? (string.Join("/", new string[] { Ability1, Ability2 })) : Ability1));
+            }
+        }
     }
 }

@@ -7,13 +7,64 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid Name="dg"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Column="0" Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" />
+                <MenuItem Header="_Open" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+        </Menu>
+
+        <TextBox Grid.Column="0" Grid.Row="1" Name="searchTbx" Height="23" Text="{Binding Path=FilterString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" IsHitTestVisible="False" Text="Search Pokemon..." HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,-20,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=searchTbx}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <DataGrid Grid.Column="0" Grid.Row="2"
+                  Name="dg"
                   AutoGenerateColumns="True"
                   AutoGeneratingColumn="OnAutoGeneratingColumn"
+                  IsReadOnly="True"
+                  IsTextSearchCaseSensitive="False"
+                  IsTextSearchEnabled="True"
                   AlternatingRowBackground="Gainsboro"
                   FrozenColumnCount="2"
                   HorizontalGridLinesBrush="LightGray"
                   VerticalGridLinesBrush="LightGray">
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Show stats" Click="MenuItem_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding SpeciesSummary}" Margin="10" />
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
         </DataGrid>
     </Grid>
 </Window>

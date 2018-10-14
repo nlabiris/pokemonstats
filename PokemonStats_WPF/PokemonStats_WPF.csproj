@@ -80,9 +80,7 @@
     <Compile Include="DataAccess\PostgreSqlDatabase.cs" />
     <Compile Include="DataAccess\Query.cs" />
     <Compile Include="Helper\Utility.cs" />
-    <Compile Include="Models\Data.cs" />
     <Compile Include="Models\Pokemon.cs" />
-    <Compile Include="ViewModels\DataViewModel.cs" />
     <Compile Include="ViewModels\PokemonViewModel.cs" />
     <Compile Include="Views\Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
@@ -126,6 +124,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App-template.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

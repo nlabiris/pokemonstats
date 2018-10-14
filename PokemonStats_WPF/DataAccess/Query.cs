@@ -102,7 +102,15 @@ SELECT `pokemon`.`id` AS `pokemon_id`,
     AND `pokemon_abilities`.`is_hidden` = 1
     AND `ability_names`.`local_language_id` = 9
     LIMIT 2
-) AS `hidden_ability`
+) AS `hidden_ability`,
+(
+    SELECT `pokemon_species_flavor_text`.`flavor_text`
+    FROM `pokemon_species_flavor_text`
+    WHERE `pokemon_species_flavor_text`.`species_id` = `pokemon`.`species_id`
+    AND `pokemon_species_flavor_text`.`version_id` = 21
+    AND `pokemon_species_flavor_text`.`language_id` = 9
+    LIMIT 1
+) AS `species_summary`
 FROM `pokemon`
 WHERE `pokemon`.`id` <= 721;";
             }
