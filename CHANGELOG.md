@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The readme file, which uses [this](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) template
 - Main structure of the application
-- .gitignore to ignore some folders
+- `.gitignore` to ignore some folders
 
 
 [0.0.1-alpha]: https://github.com/nlabiris/pokemonstats/compare/v0.0.1...HEAD
