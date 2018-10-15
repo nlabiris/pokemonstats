@@ -71,9 +71,8 @@
                         <WrapPanel>
                             <StackPanel Margin="5">
                                 <TextBlock>Pokemon</TextBlock>
-                                <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
-                                    <ComboBoxItem>Mudkip</ComboBoxItem>
-                                    <ComboBoxItem>Swampert</ComboBoxItem>
+                                <ComboBox Name="pokemonCmb" DisplayMemberPath="Name"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
+                                    
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Margin="5">

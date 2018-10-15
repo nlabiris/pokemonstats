@@ -57,7 +57,8 @@ namespace PokemonStats_WPF.Views {
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
-            Window1 specificPokemonWindow = new Window1();
+            Pokemon p = dg.SelectedItem as Pokemon;
+            Window1 specificPokemonWindow = new Window1(p, _pokemonViewModel);
             specificPokemonWindow.Show();
         }
 
