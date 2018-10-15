@@ -18,9 +18,25 @@ namespace PokemonStats_WPF.Models {
         [DisplayName("Type 2")]
         public string Type2 { get; set; }
 
+        [DisplayName("Ability 1")]
+        public string Ability1 { get; set; }
+
+        [DisplayName("Ability 2")]
+        public string Ability2 { get; set; }
+
+        [DisplayName("Hidden ability")]
+        public string HiddenAbility { get; set; }
+
         public byte[] Type1_Image { get; set; }
 
         public byte[] Type2_Image { get; set; }
+
+        public int HP { get; set; }
+        public int Atk { get; set; }
+        public int Def { get; set; }
+        public int SpAtk { get; set; }
+        public int SpDef { get; set; }
+        public int Spe { get; set; }
 
         public string Color { get; set; }
         public string Shape { get; set; }
@@ -43,15 +59,6 @@ namespace PokemonStats_WPF.Models {
 
         [DisplayName("Base experience")]
         public int BaseExperience { get; set; }
-
-        [DisplayName("Ability 1")]
-        public string Ability1 { get; set; }
-
-        [DisplayName("Ability 2")]
-        public string Ability2 { get; set; }
-
-        [DisplayName("Hidden ability")]
-        public string HiddenAbility { get; set; }
 
         public string SpeciesSummary { get; set; }
 

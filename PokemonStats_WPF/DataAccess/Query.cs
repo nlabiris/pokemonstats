@@ -46,6 +46,42 @@ SELECT `pokemon`.`id` AS `pokemon_id`,
     LIMIT 1,1
 ) AS `type2_image`,
 (
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1
+) AS `hp`,
+(
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1,1
+) AS `atk`,
+(
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 2,1
+) AS `def`,
+(
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 3,1
+) AS `sp_atk`,
+(
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 4,1
+) AS `sp_def`,
+(
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 5,1
+) AS `spe`,
+(
     SELECT `pokemon_color_names`.`name`
     FROM `pokemon_color_names`
     INNER JOIN `pokemon_colors` ON `pokemon_colors`.`id` = `pokemon_color_names`.`pokemon_color_id`
@@ -168,7 +204,7 @@ SELECT `pokemon`.`id` AS `pokemon_id`,
     WHERE `pokemon_species_names`.`local_language_id` = 9
     AND `pokemon`.`id` = `pokemon_id`
     LIMIT 1
-) AS `name`, 
+) AS `name`,
 (
     SELECT `types`.`identifier`
     FROM `types`
@@ -183,6 +219,56 @@ SELECT `pokemon`.`id` AS `pokemon_id`,
     WHERE `pokemon_types`.`pokemon_id` = `pokemon`.`id`
     LIMIT 1,1
 ) AS `type2`,
+(
+    SELECT `types`.`image`
+    FROM `types`
+    INNER JOIN `pokemon_types` ON `pokemon_types`.`type_id` = `types`.`id`
+    WHERE `pokemon_types`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1
+) AS `type1_image`,
+(
+    SELECT `types`.`image`
+    FROM `types`
+    INNER JOIN `pokemon_types` ON `pokemon_types`.`type_id` = `types`.`id`
+    WHERE `pokemon_types`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1,1
+) AS `type2_image`,
+(
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1
+) AS `hp`,
+(
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 1,1
+) AS `atk`,
+(
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 2,1
+) AS `def`,
+(
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 3,1
+) AS `sp_atk`,
+(
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 4,1
+) AS `sp_def`,
+(
+    SELECT `pokemon_stats`.`base_stat`
+    FROM `pokemon_stats`
+    WHERE `pokemon_stats`.`pokemon_id` = `pokemon`.`id`
+    LIMIT 5,1
+) AS `spe`,
 (
     SELECT `pokemon_color_names`.`name`
     FROM `pokemon_color_names`

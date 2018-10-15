@@ -45,6 +45,7 @@ namespace PokemonStats_WPF.ViewModels {
                 return true;
             } else {
                 return (
+                    (int.TryParse(_filterString, out int n) ? (item as Pokemon).IndexNumber == n : false) ||
                     ((item as Pokemon).Name.IndexOf(_filterString, StringComparison.OrdinalIgnoreCase) >= 0) ||
                     ((item as Pokemon).Type1.IndexOf(_filterString, StringComparison.OrdinalIgnoreCase) >= 0) ||
                     ((item as Pokemon).Type2.IndexOf(_filterString, StringComparison.OrdinalIgnoreCase) >= 0) ||
@@ -69,10 +70,16 @@ namespace PokemonStats_WPF.ViewModels {
                             Pokemon p = new Pokemon {
                                 IndexNumber = reader.CheckValue<int>("pokemon_id"),
                                 Name = reader.CheckObject<string>("name"),
-                                Type1 = reader.CheckObject<string>("type1") != null ? reader.CheckObject<string>("type1") : "",
-                                Type2 = reader.CheckObject<string>("type2") != null ? reader.CheckObject<string>("type2") : "",
+                                Type1 = reader.CheckObject<string>("type1") ?? "",
+                                Type2 = reader.CheckObject<string>("type2") ?? "",
                                 Type1_Image = reader.CheckObject<byte[]>("type1_image"),
                                 Type2_Image = reader.CheckObject<byte[]>("type2_image"),
+                                HP = reader.CheckValue<int>("hp"),
+                                Atk = reader.CheckValue<int>("atk"),
+                                Def = reader.CheckValue<int>("def"),
+                                SpAtk = reader.CheckValue<int>("sp_atk"),
+                                SpDef = reader.CheckValue<int>("sp_def"),
+                                Spe = reader.CheckValue<int>("spe"),
                                 Color = reader.CheckObject<string>("color"),
                                 Shape = reader.CheckObject<string>("shape"),
                                 Habitat = reader.CheckObject<string>("habitat"),
@@ -83,8 +90,8 @@ namespace PokemonStats_WPF.ViewModels {
                                 Height = reader.CheckValue<int>("height"),
                                 Weight = reader.CheckValue<int>("weight"),
                                 BaseExperience = reader.CheckValue<int>("base_experience"),
-                                Ability1 = reader.CheckObject<string>("ability1") != null ? reader.CheckObject<string>("ability1") : "",
-                                Ability2 = reader.CheckObject<string>("ability2") != null ? reader.CheckObject<string>("ability2") : "",
+                                Ability1 = reader.CheckObject<string>("ability1") ?? "",
+                                Ability2 = reader.CheckObject<string>("ability2") ?? "",
                                 HiddenAbility = reader.CheckObject<string>("hidden_ability") ?? "",
                                 SpeciesSummary = reader.CheckObject<string>("species_summary")?.Replace("\r\n", " "),
                                 Icon = reader.CheckObject<byte[]>("icon"),
