@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PokemonStats_WPF.Models
-{
+﻿namespace PokemonStats_WPF.Models {
     public class Form {
+        public string FormName { get; set; }
+        public string PokemonName { get; set; }
+        public int IsDefault { get; set; }
+        public int IsBattleOnly { get; set; }
+        public int IsMega { get; set; }
+        public byte[] Icon { get; set; }
+        public byte[] Sprite { get; set; }
     }
 }

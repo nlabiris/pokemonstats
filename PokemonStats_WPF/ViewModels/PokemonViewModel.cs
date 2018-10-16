@@ -103,6 +103,32 @@ namespace PokemonStats_WPF.ViewModels {
             return pokemons;
         }
 
+        public Form RetrievePokemonForm(int species_id) {
+            Form form = null;
+            using (IDbConnection connection = database.CreateOpenConnection()) {
+                using (IDbCommand command = database.CreateCommand()) {
+                    command.Connection = connection;
+                    command.CommandText = Query.GetSpecificForm;
+                    command.Prepare();
+                    command.AddWithValue("@species_id", species_id);
+                    using (IDataReader reader = command.ExecuteReader()) {
+                        while (reader.Read()) {
+                            form = new Form {
+                                FormName = reader.CheckObject<string>("form_name") ?? string.Empty,
+                                PokemonName = reader.CheckObject<string>("pokemon_name") ?? string.Empty,
+                                IsDefault = reader.CheckValue<int>("is_default"),
+                                IsBattleOnly = reader.CheckValue<int>("is_battle_only"),
+                                IsMega = reader.CheckValue<int>("is_mega"),
+                                Icon = reader.CheckObject<byte[]>("icon"),
+                                Sprite = reader.CheckObject<byte[]>("sprite")
+                            };
+                        }
+                    }
+                } // Command
+            }
+            return form;
+        }
+
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 

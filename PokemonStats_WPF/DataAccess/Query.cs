@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-
-namespace PokemonStats_WPF.DataAccess {
+﻿namespace PokemonStats_WPF.DataAccess {
     internal static class Query {
         public static string GetAllPokemon {
             get {
@@ -410,7 +406,25 @@ SELECT `pokemon_species`.`id` AS `index_number`,
     LIMIT 1
 ) AS `sprite`
 FROM `pokemon_species`
-WHERE `pokemon_species`.`id` = @pokemon_id";
+WHERE `pokemon_species`.`id` = @species_id;";
+            }
+        }
+
+        public static string GetSpecificForm {
+            get {
+                return @"
+SELECT `pokemon_forms`.`is_default`,
+        `pokemon_forms`.`is_battle_only`,
+        `pokemon_forms`.`is_mega`,
+        `pokemon_forms`.`icon`,
+        `pokemon_forms`.`sprite`,
+        `pokemon_form_names`.`form_name`,
+        `pokemon_form_names`.`pokemon_name`
+FROM `pokemon_forms`
+INNER JOIN `pokemon_form_names` ON `pokemon_form_names`.`pokemon_form_id` = `pokemon_forms`.`id`
+INNER JOIN `pokemon` ON `pokemon`.`id` = `pokemon_forms`.`pokemon_id`
+WHERE `pokemon_form_names`.`local_language_id` = 9
+AND `pokemon`.`species_id` = @species_id;";
             }
         }
     }

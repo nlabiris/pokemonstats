@@ -128,22 +128,22 @@
                                 </StackPanel>
                                 <StackPanel Margin="10,0,0,0">
                                     <Border Margin="3">
-                                        <TextBox Width="30">80</TextBox>
+                                        <TextBox Text="{Binding Stats.HP}" Width="30"></TextBox>
                                     </Border>
                                     <Border Margin="3">
-                                        <TextBox Width="30">120</TextBox>
+                                        <TextBox Text="{Binding Stats.Atk}" Width="30"></TextBox>
                                     </Border>
                                     <Border Margin="3">
-                                        <TextBox Width="30">70</TextBox>
+                                        <TextBox Text="{Binding Stats.Def}" Width="30"></TextBox>
                                     </Border>
                                     <Border Margin="3">
-                                        <TextBox Width="30">110</TextBox>
+                                        <TextBox Text="{Binding Stats.SpAtk}" Width="30"></TextBox>
                                     </Border>
                                     <Border Margin="3">
-                                        <TextBox Width="30">70</TextBox>
+                                        <TextBox Text="{Binding Stats.SpDef}" Width="30"></TextBox>
                                     </Border>
                                     <Border Margin="3">
-                                        <TextBox Width="30">80</TextBox>
+                                        <TextBox Text="{Binding Stats.Spe}" Width="30"></TextBox>
                                     </Border>
                                 </StackPanel>
                                 <StackPanel Margin="10,0,0,0">
