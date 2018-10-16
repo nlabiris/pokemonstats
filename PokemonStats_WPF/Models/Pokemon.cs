@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokemonStats_WPF.Models {
     public class Pokemon {
@@ -31,12 +28,7 @@ namespace PokemonStats_WPF.Models {
 
         public byte[] Type2_Image { get; set; }
 
-        public int HP { get; set; }
-        public int Atk { get; set; }
-        public int Def { get; set; }
-        public int SpAtk { get; set; }
-        public int SpDef { get; set; }
-        public int Spe { get; set; }
+        public Stats Stats { get; set; }
 
         public string Color { get; set; }
         public string Shape { get; set; }
