@@ -31,31 +31,6 @@ namespace PokemonStats_WPF.Views {
             _pokemonViewModel.Pokemons.Filter = _pokemonViewModel.PokemonsFilter;
         }
 
-        // This snippet is much safer in terms of preventing unwanted
-        // Exceptions because of missing [DisplayNameAttribute].
-        private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e) {
-            if (e.PropertyDescriptor is PropertyDescriptor descriptor) {
-                e.Column.Header = descriptor.DisplayName ?? descriptor.Name;
-            }
-            //Cancel columns you don't want to generate
-            switch (e.Column.Header.ToString()) {
-                case "Details":
-                case "SpeciesSummary":
-                case "Icon":
-                case "Sprite":
-                case "Type1_Image":
-                case "Type2_Image":
-                case "Height":
-                case "Weight":
-                    e.Cancel = true;
-                    break;
-            }
-        }
-
-        private void Row_DoubleClick(object sender, MouseButtonEventArgs e) {
-            
-        }
-
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
             Pokemon p = dg.SelectedItem as Pokemon;
             Window1 specificPokemonWindow = new Window1(p, _pokemonViewModel);

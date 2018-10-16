@@ -20,6 +20,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Column="0" Grid.Row="0">
             <MenuItem Header="_File">
@@ -47,8 +48,7 @@
 
         <DataGrid Grid.Column="0" Grid.Row="2"
                   Name="dg"
-                  AutoGenerateColumns="True"
-                  AutoGeneratingColumn="OnAutoGeneratingColumn"
+                  AutoGenerateColumns="False"
                   IsReadOnly="True"
                   IsTextSearchCaseSensitive="False"
                   IsTextSearchEnabled="True"
@@ -56,11 +56,27 @@
                   FrozenColumnCount="2"
                   HorizontalGridLinesBrush="LightGray"
                   VerticalGridLinesBrush="LightGray">
-            <DataGrid.ItemContainerStyle>
-                <Style TargetType="DataGridRow">
-                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
-                </Style>
-            </DataGrid.ItemContainerStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding IndexNumber}" Header="No"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Name"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Type1}" Header="Type 1"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Type2}" Header="Type 2"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Ability1}" Header="Ability 1"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Ability2}" Header="Ability 2"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding HiddenAbility}" Header="Hidden ability"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Stats.HP}" Header="HP"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Stats.Atk}" Header="Atk"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Stats.Def}" Header="Def"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Stats.SpAtk}" Header="SpAtk"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Stats.SpDef}" Header="SpDef"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Stats.Spe}" Header="Spe"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Color}" Header="Color"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Shape}" Header="Shape"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Habitat}" Header="Habitat"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding GenderRate}" Header="Gender rate"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding CaptureRate}" Header="Capture rate"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding BaseExperience}" Header="Base experience"></DataGridTextColumn>
+            </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Show stats" Click="MenuItem_Click"/>
@@ -104,5 +120,10 @@
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
+        <StatusBar Grid.Column="0" Grid.Row="3">
+            <StatusBarItem>
+                <TextBlock>Test</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>
