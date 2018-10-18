@@ -1,7 +1,7 @@
 # Pokémon Stats
 
 [![Software License](https://img.shields.io/github/license/nlabiris/pokemonstats.svg)](LICENSE.md)
-[![GitHub (pre-)release](https://img.shields.io/badge/alpha-v0.0.3-red.svg)](https://github.com/nlabiris/pokemonstats/releases)
+[![GitHub (pre-)release](https://img.shields.io/badge/beta-v0.1.0-red.svg)](https://github.com/nlabiris/pokemonstats/releases)
 
 A simple Pokédex written in C# using [WPF](https://docs.microsoft.com/en-us/dotnet/framework/wpf/getting-started/). All the data are comes from [veekun pokedex](https://github.com/veekun/pokedex) and are hosted in a MySQL server. The solution is created using Visual Studio 2017.
 
