@@ -80,9 +80,12 @@
     <Compile Include="DataAccess\PostgreSqlDatabase.cs" />
     <Compile Include="DataAccess\Query.cs" />
     <Compile Include="Helper\Utility.cs" />
+    <Compile Include="Models\Form.cs" />
     <Compile Include="Models\Pokemon.cs" />
+    <Compile Include="Models\Stats.cs" />
     <Compile Include="ViewModels\PokemonViewModel.cs" />
     <Compile Include="Views\Converters\HeightConverter.cs" />
+    <Compile Include="Views\Converters\ProgressBarForegroundConverter.cs" />
     <Compile Include="Views\Converters\TypeConverter.cs" />
     <Compile Include="Views\Converters\WeightConverter.cs" />
     <Compile Include="Views\Window1.xaml.cs">
@@ -137,6 +140,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

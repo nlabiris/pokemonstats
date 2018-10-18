@@ -4,13 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokemonStats_WPF.Views"
+        xmlns:converters ="clr-namespace:PokemonStats_WPF.Views.Converters"
         mc:Ignorable="d"
-        Title="Window1" Height="300" Width="850">
+        Title="{Binding SelectedPokemonWindowTitle}" Height="400" Width="800">
     <Window.Resources>
         <Style TargetType="{x:Type Border}">
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="LightGray"/>
         </Style>
+        <converters:TypeConverter x:Key="TypeConverter" />
+        <converters:HeightConverter x:Key="HeightConverter" />
+        <converters:WeightConverter x:Key="WeightConverter" />
+        <converters:ProgressForegroundConverter x:Key="ProgressForegroundConverter" />
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -33,11 +38,90 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <WrapPanel Grid.Column="0" Grid.Row="0">
-                <GroupBox Header="Image">
-                    <Image VerticalAlignment="Top" Height="100" Width="100">
-
-                    </Image>
+                <StackPanel>
+                    <Image Source="{Binding SelectedPokemon.Sprite}" VerticalAlignment="Top" Height="100" Width="100" />
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Image Source="{Binding SelectedPokemon.Type1_Image}" Height="13" Width="30" Margin="0,0,5,0" />
+                        <Image Source="{Binding SelectedPokemon.Type2_Image}" Height="13" Width="30" />
+                    </WrapPanel>
+                    <WrapPanel Margin="10" HorizontalAlignment="Center">
+                        <TextBlock FontWeight="Bold" Margin="0,0,10,0">Bulbasaur</TextBlock>
+                        <TextBlock>#386</TextBlock>
+                    </WrapPanel>
+                    <TextBlock FontSize="10" HorizontalAlignment="Center">
+                        <Run Text="{Binding SelectedPokemon.Genus}" />
+                        <Run Text="Pokemon" />
+                    </TextBlock>
+                    <WrapPanel HorizontalAlignment="Center" Margin="20">
+                        <StackPanel Margin="0,0,20,0">
+                            <TextBlock HorizontalAlignment="Center" FontWeight="DemiBold" FontStyle="Italic">Height</TextBlock>
+                            <TextBlock Padding="0,10,0,0" Text="{Binding SelectedPokemon.Height, Converter={StaticResource HeightConverter}}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center" FontWeight="DemiBold" FontStyle="Italic">Weight</TextBlock>
+                            <TextBlock Padding="0,10,0,0" Text="{Binding SelectedPokemon.Weight, Converter={StaticResource WeightConverter}}"></TextBlock>
+                        </StackPanel>
+                    </WrapPanel>
+                </StackPanel>
+                <GroupBox Header="Profile">
+                    <StackPanel>
+                        <WrapPanel>
+                            <StackPanel Margin="5">
+                                <TextBlock FontWeight="DemiBold" FontStyle="Italic" Margin="0,0,0,10">Abilities</TextBlock>
+                                <TextBlock Padding="3" Text="{Binding SelectedPokemon.Ability1}"></TextBlock>
+                                <TextBlock Padding="3" Text="{Binding SelectedPokemon.Ability2}"></TextBlock>
+                                <TextBlock FontSize="10" FontWeight="DemiBold" FontStyle="Italic" Margin="0,10,0,0">Hidden ability</TextBlock>
+                                <TextBlock Padding="3" Text="{Binding SelectedPokemon.HiddenAbility}" Margin="0,10,0,0"></TextBlock>
+                                <StackPanel Margin="0,30,0,0">
+                                    <TextBlock FontWeight="DemiBold" FontStyle="Italic">Footprint</TextBlock>
+                                    <Image Margin="5" Source="{Binding SelectedPokemon.Footprint}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="16" Height="16" />
+                                </StackPanel>
+                                <StackPanel Margin="5">
+                                    <TextBlock FontWeight="DemiBold" FontStyle="Italic">Shape</TextBlock>
+                                    <Image Margin="5" Source="{Binding SelectedPokemon.Shape_Image}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="32" Height="32" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Margin="30,0,0,0">
+                                <TextBlock FontWeight="DemiBold" FontStyle="Italic" Margin="0,0,0,10">Breeding</TextBlock>
+                                <WrapPanel>
+                                    <StackPanel Margin="0,0,20,0">
+                                        <TextBlock Padding="3">Gender ratio</TextBlock>
+                                        <TextBlock Padding="3">Egg groups</TextBlock>
+                                        <TextBlock Padding="3">Hatch counter</TextBlock>
+                                        <TextBlock Padding="3">Steps to hatch</TextBlock>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Padding="3" Text="{Binding SelectedPokemon.GenderRate}"></TextBlock>
+                                        <TextBlock Padding="3" Text="{Binding SelectedPokemon.EggGroups}"></TextBlock>
+                                        <TextBlock Padding="3" Text="{Binding SelectedPokemon.HatchCounter}"></TextBlock>
+                                        <TextBlock Padding="3" Text="{Binding SelectedPokemon.HatchSteps}"></TextBlock>
+                                    </StackPanel>
+                                </WrapPanel>
+                                <TextBlock FontWeight="DemiBold" FontStyle="Italic" Margin="0,50,0,10">Training</TextBlock>
+                                <WrapPanel>
+                                    <StackPanel Margin="0,0,20,0">
+                                        <TextBlock Padding="3">Base EXP</TextBlock>
+                                        <TextBlock Padding="3">EVs</TextBlock>
+                                        <TextBlock Padding="3">Capture Rate</TextBlock>
+                                        <TextBlock Padding="3">Base happiness</TextBlock>
+                                        <TextBlock Padding="3">Growth rate</TextBlock>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Padding="3" Text="{Binding SelectedPokemon.BaseExperience}"></TextBlock>
+                                        <TextBlock Padding="3" Text="{Binding SelectedPokemon.GenderRate}"></TextBlock>
+                                        <TextBlock Padding="3" Text="{Binding SelectedPokemon.CaptureRate}"></TextBlock>
+                                        <TextBlock Padding="3" Text="{Binding SelectedPokemon.BaseHappiness}"></TextBlock>
+                                        <TextBlock Padding="3" Text="{Binding SelectedPokemon.GrowthRate}"></TextBlock>
+                                    </StackPanel>
+                                </WrapPanel>
+                            </StackPanel>
+                        </WrapPanel>
+                        <WrapPanel>
+                            
+                        </WrapPanel>
+                    </StackPanel>
                 </GroupBox>
+                <!--
                 <GroupBox Header="Details">
                     <StackPanel>
                         <WrapPanel>
@@ -71,9 +155,8 @@
                         <WrapPanel>
                             <StackPanel Margin="5">
                                 <TextBlock>Pokemon</TextBlock>
-                                <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
-                                    <ComboBoxItem>Mudkip</ComboBoxItem>
-                                    <ComboBoxItem>Swampert</ComboBoxItem>
+                                <ComboBox Name="pokemonCmb" DisplayMemberPath="Name"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
+                                    
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Margin="5">
@@ -111,13 +194,12 @@
                         </WrapPanel>
                     </StackPanel>
                 </GroupBox>
+                -->
             </WrapPanel>
             <WrapPanel Grid.Column="2" Grid.Row="0">
                 <GroupBox Header="Stats">
                     <WrapPanel>
                         <StackPanel>
-                            <TextBlock>Base</TextBlock>
-                            <TextBlock></TextBlock>
                             <WrapPanel>
                                 <StackPanel>
                                     <TextBlock Margin="5">HP</TextBlock>
@@ -128,34 +210,35 @@
                                     <TextBlock Margin="5">Spe</TextBlock>
                                 </StackPanel>
                                 <StackPanel Margin="10,0,0,0">
-                                    <Border Margin="3">
-                                        <TextBox Width="30">80</TextBox>
+                                    <Border Margin="5,5,5,5">
+                                        <TextBlock Text="{Binding SelectedPokemon.Stats.HP}" Width="30"></TextBlock>
                                     </Border>
-                                    <Border Margin="3">
-                                        <TextBox Width="30">120</TextBox>
+                                    <Border Margin="5,4,5,5">
+                                        <TextBlock Text="{Binding SelectedPokemon.Stats.Atk}" Width="30"></TextBlock>
                                     </Border>
-                                    <Border Margin="3">
-                                        <TextBox Width="30">70</TextBox>
+                                    <Border Margin="5,3,5,5">
+                                        <TextBlock Text="{Binding SelectedPokemon.Stats.Def}" Width="30"></TextBlock>
                                     </Border>
-                                    <Border Margin="3">
-                                        <TextBox Width="30">110</TextBox>
+                                    <Border Margin="5,3,5,5">
+                                        <TextBlock Text="{Binding SelectedPokemon.Stats.SpAtk}" Width="30"></TextBlock>
                                     </Border>
-                                    <Border Margin="3">
-                                        <TextBox Width="30">70</TextBox>
+                                    <Border Margin="5,3,5,5">
+                                        <TextBlock Text="{Binding SelectedPokemon.Stats.SpDef}" Width="30"></TextBlock>
                                     </Border>
-                                    <Border Margin="3">
-                                        <TextBox Width="30">80</TextBox>
+                                    <Border Margin="5,3,5,5">
+                                        <TextBlock Text="{Binding SelectedPokemon.Stats.Spe}" Width="30"></TextBlock>
                                     </Border>
                                 </StackPanel>
                                 <StackPanel Margin="10,0,0,0">
-                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
-                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
-                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
-                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
-                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
-                                    <ProgressBar Margin="8" Minimum="0" Maximum="100" Value="75" Height="10" Width="150" Foreground="LightGreen"/>
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="255" Value="{Binding SelectedPokemon.Stats.HP}" Height="10" Width="150" Foreground="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value, Converter={StaticResource ProgressForegroundConverter}}"/>
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="255" Value="{Binding SelectedPokemon.Stats.Atk}" Height="10" Width="150" Foreground="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value, Converter={StaticResource ProgressForegroundConverter}}"/>
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="255" Value="{Binding SelectedPokemon.Stats.Def}" Height="10" Width="150" Foreground="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value, Converter={StaticResource ProgressForegroundConverter}}"/>
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="255" Value="{Binding SelectedPokemon.Stats.SpAtk}" Height="10" Width="150" Foreground="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value, Converter={StaticResource ProgressForegroundConverter}}"/>
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="255" Value="{Binding SelectedPokemon.Stats.SpDef}" Height="10" Width="150" Foreground="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value, Converter={StaticResource ProgressForegroundConverter}}"/>
+                                    <ProgressBar Margin="8" Minimum="0" Maximum="255" Value="{Binding SelectedPokemon.Stats.Spe}" Height="10" Width="150" Foreground="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Value, Converter={StaticResource ProgressForegroundConverter}}"/>
                                 </StackPanel>
                             </WrapPanel>
+                            <!--
                             <WrapPanel Margin="0,13,0,0">
                                 <TextBlock Padding="0,2,12,0">Nature</TextBlock>
                                 <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="100">
@@ -164,7 +247,9 @@
                                 </ComboBox>
                                 <TextBlock FontWeight="Bold" Padding="55,2,0,0">Remaining:</TextBlock>
                             </WrapPanel>
+                            -->
                         </StackPanel>
+                        <!--
                         <StackPanel>
                             <TextBlock>EVs</TextBlock>
                             <TextBlock></TextBlock>
@@ -218,6 +303,7 @@
                                 </StackPanel>
                             </WrapPanel>
                         </StackPanel>
+                        -->
                     </WrapPanel>
                 </GroupBox>
             </WrapPanel>

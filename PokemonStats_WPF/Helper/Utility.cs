@@ -43,5 +43,17 @@ namespace PokemonStats_WPF.Helper {
                 return true;
             }
         }
+
+        public static double MetersToFeet(double meters){
+            return meters / 0.3048;
+        }
+
+        public static double FeetToInches(double feet) {
+            return feet * 12;
+        }
+
+        public static double KgToLb(double kg) {
+            return kg / 0.45359237;
+        }
     }
 }
