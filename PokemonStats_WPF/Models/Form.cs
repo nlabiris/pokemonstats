@@ -2,9 +2,9 @@
     public class Form {
         public string FormName { get; set; }
         public string PokemonName { get; set; }
-        public int IsDefault { get; set; }
-        public int IsBattleOnly { get; set; }
-        public int IsMega { get; set; }
+        public bool IsDefault { get; set; }
+        public bool IsBattleOnly { get; set; }
+        public bool IsMega { get; set; }
         public byte[] Icon { get; set; }
         public byte[] Sprite { get; set; }
     }

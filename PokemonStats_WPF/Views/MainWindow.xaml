@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PokemonStats_WPF.Views"
         xmlns:converters ="clr-namespace:PokemonStats_WPF.Views.Converters"
         mc:Ignorable="d"
-        Title="Pokemon Stats" Height="450" Width="800">
+        Title="{Binding MainWindowTitle}" Height="450" Width="800">
     <Window.Resources>
         <converters:TypeConverter x:Key="TypeConverter" />
         <converters:HeightConverter x:Key="HeightConverter" />
@@ -49,6 +49,7 @@
         <DataGrid Grid.Column="0" Grid.Row="2"
                   Name="dg"
                   AutoGenerateColumns="False"
+                  SelectedItem="{Binding SelectedPokemon}"
                   IsReadOnly="True"
                   IsTextSearchCaseSensitive="False"
                   IsTextSearchEnabled="True"

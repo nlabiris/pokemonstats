@@ -14,14 +14,15 @@ namespace PokemonStats_WPF.Views
         public MainWindow() {
             InitializeComponent();
             _pokemonViewModel = new PokemonViewModel();
-            DataContext = _pokemonViewModel;
+            _pokemonViewModel.MainWindowTitle = "Pokemon Stats";
             dg.ItemsSource = _pokemonViewModel.Pokemons;
             _pokemonViewModel.Pokemons.Filter = _pokemonViewModel.PokemonsFilter;
+            DataContext = _pokemonViewModel;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
-            Pokemon p = dg.SelectedItem as Pokemon;
-            Window1 specificPokemonWindow = new Window1(p, _pokemonViewModel);
+            _pokemonViewModel.SelectedPokemon = dg.SelectedItem as Pokemon;
+            Window1 specificPokemonWindow = new Window1(_pokemonViewModel);
             specificPokemonWindow.Show();
         }
 

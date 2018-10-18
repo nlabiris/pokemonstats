@@ -12,6 +12,13 @@ SELECT `pokemon_species`.`id` AS `index_number`,
     LIMIT 1
 ) AS `name`,
 (
+    SELECT `pokemon_species_names`.`genus`
+    FROM `pokemon_species_names`
+    WHERE `pokemon_species_names`.`local_language_id` = 9
+    AND `pokemon_species_names`.`pokemon_species_id` = `pokemon_species`.`id`
+    LIMIT 1
+) AS `genus`,
+(
     SELECT `types`.`identifier`
     FROM `types`
     INNER JOIN `pokemon_types` ON `pokemon_types`.`type_id` = `types`.`id`
@@ -90,6 +97,56 @@ SELECT `pokemon_species`.`id` AS `index_number`,
     LIMIT 5,1
 ) AS `spe`,
 (
+    SELECT `pokemon_stats`.`effort`
+    FROM `pokemon_stats`
+    INNER JOIN `pokemon` ON `pokemon`.`id` = `pokemon_stats`.`pokemon_id`
+    WHERE `pokemon`.`species_id` = `index_number`
+    LIMIT 1
+) AS `ev_yield_hp`,
+(
+    SELECT `pokemon_stats`.`effort`
+    FROM `pokemon_stats`
+    INNER JOIN `pokemon` ON `pokemon`.`id` = `pokemon_stats`.`pokemon_id`
+    WHERE `pokemon`.`species_id` = `index_number`
+    LIMIT 1,1
+) AS `ev_yield_atk`,
+(
+    SELECT `pokemon_stats`.`effort`
+    FROM `pokemon_stats`
+    INNER JOIN `pokemon` ON `pokemon`.`id` = `pokemon_stats`.`pokemon_id`
+    WHERE `pokemon`.`species_id` = `index_number`
+    LIMIT 2,1
+) AS `ev_yield_def`,
+(
+    SELECT `pokemon_stats`.`effort`
+    FROM `pokemon_stats`
+    INNER JOIN `pokemon` ON `pokemon`.`id` = `pokemon_stats`.`pokemon_id`
+    WHERE `pokemon`.`species_id` = `index_number`
+    LIMIT 3,1
+) AS `ev_yield_sp_atk`,
+(
+    SELECT `pokemon_stats`.`effort`
+    FROM `pokemon_stats`
+    INNER JOIN `pokemon` ON `pokemon`.`id` = `pokemon_stats`.`pokemon_id`
+    WHERE `pokemon`.`species_id` = `index_number`
+    LIMIT 4,1
+) AS `ev_yield_sp_def`,
+(
+    SELECT `pokemon_stats`.`effort`
+    FROM `pokemon_stats`
+    INNER JOIN `pokemon` ON `pokemon`.`id` = `pokemon_stats`.`pokemon_id`
+    WHERE `pokemon`.`species_id` = `index_number`
+    LIMIT 5,1
+) AS `ev_yield_spe`,
+(
+    SELECT GROUP_CONCAT(`egg_group_prose`.`name` SEPARATOR ',')
+    FROM `egg_group_prose`
+    INNER JOIN `egg_groups` ON `egg_groups`.`id` = `egg_group_prose`.`egg_group_id`
+    INNER JOIN `pokemon_egg_groups` ON `pokemon_egg_groups`.`egg_group_id` = `egg_groups`.`id`
+    WHERE `pokemon_egg_groups`.`species_id` = `index_number`
+    AND `egg_group_prose`.`local_language_id` = 9
+) AS `egg_groups`,
+(
     SELECT `pokemon_color_names`.`name`
     FROM `pokemon_color_names`
     INNER JOIN `pokemon_colors` ON `pokemon_colors`.`id` = `pokemon_color_names`.`pokemon_color_id`
@@ -108,6 +165,13 @@ SELECT `pokemon_species`.`id` AS `index_number`,
     LIMIT 1
 ) AS `shape`,
 (
+    SELECT `pokemon_shapes`.`image`
+    FROM `pokemon_shapes`
+    INNER JOIN `pokemon_species` ON `pokemon_species`.`shape_id` = `pokemon_shapes`.`id`
+    WHERE `pokemon_species`.`id` = `index_number`
+    LIMIT 1
+) AS `shape_image`,
+(
     SELECT `pokemon_habitat_names`.`name`
     FROM `pokemon_habitat_names`
     INNER JOIN `pokemon_habitats` ON `pokemon_habitats`.`id` = `pokemon_habitat_names`.`pokemon_habitat_id`
@@ -116,9 +180,21 @@ SELECT `pokemon_species`.`id` AS `index_number`,
     AND `pokemon_habitat_names`.`local_language_id` = 9
     LIMIT 1
 ) AS `habitat`,
+(
+    SELECT `pokemon_habitats`.`image`
+    FROM `pokemon_habitats`
+    INNER JOIN `pokemon_species` ON `pokemon_species`.`habitat_id` = `pokemon_habitats`.`id`
+    WHERE `pokemon_species`.`id` = `index_number`
+    LIMIT 1
+) AS `habitat_image`,
+`footprint`,
 `gender_rate`,
 `capture_rate`,
 `base_happiness`,
+`hatch_counter`,
+(
+    `hatch_counter` * 257
+) AS `hatch_steps`,
 (
     SELECT `growth_rate_prose`.`name`
     FROM `growth_rate_prose`
@@ -217,6 +293,13 @@ SELECT `pokemon_species`.`id` AS `index_number`,
     LIMIT 1
 ) AS `name`,
 (
+    SELECT `pokemon_species_names`.`genus`
+    FROM `pokemon_species_names`
+    WHERE `pokemon_species_names`.`local_language_id` = 9
+    AND `pokemon_species_names`.`pokemon_species_id` = `pokemon_species`.`id`
+    LIMIT 1
+) AS `genus`,
+(
     SELECT `types`.`identifier`
     FROM `types`
     INNER JOIN `pokemon_types` ON `pokemon_types`.`type_id` = `types`.`id`
@@ -324,6 +407,10 @@ SELECT `pokemon_species`.`id` AS `index_number`,
 `gender_rate`,
 `capture_rate`,
 `base_happiness`,
+`hatch_counter`,
+(
+    `hatch_counter` * 257
+) AS `hatch_steps`,
 (
     SELECT `growth_rate_prose`.`name`
     FROM `growth_rate_prose`
