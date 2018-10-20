@@ -13,6 +13,7 @@ namespace PokemonStats_WPF.Views
 
         public MainWindow() {
             InitializeComponent();
+            searchTbx.Focus();
             _pokemonViewModel = new PokemonViewModel();
             _pokemonViewModel.MainWindowTitle = "Pokemon Stats";
             dg.ItemsSource = _pokemonViewModel.Pokemons;
