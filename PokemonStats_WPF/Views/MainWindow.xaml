@@ -32,7 +32,7 @@
             </MenuItem>
         </Menu>
 
-        <TextBox Grid.Column="0" Grid.Row="1" Name="searchTbx" Height="23" Text="{Binding Path=FilterString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="0" Grid.Row="1" Name="searchTbx" Height="23" Text="{Binding Path=FilterString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
         <TextBlock Grid.Column="0" Grid.Row="2" IsHitTestVisible="False" Text="Search Pokemon..." HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,-20,0,0" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -71,9 +71,6 @@
                 <DataGridTextColumn Binding="{Binding Stats.SpAtk}" Header="SpAtk"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Stats.SpDef}" Header="SpDef"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Stats.Spe}" Header="Spe"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Color}" Header="Color"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Shape}" Header="Shape"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Habitat}" Header="Habitat"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding GenderRate}" Header="Gender rate"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding CaptureRate}" Header="Capture rate"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding BaseExperience}" Header="Base experience"></DataGridTextColumn>
