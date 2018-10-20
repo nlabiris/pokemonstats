@@ -98,7 +98,7 @@ namespace PokemonStats_WPF.ViewModels {
                     command.Prepare();
                     using (IDataReader reader = command.ExecuteReader()) {
                         while (reader.Read()) {
-                            Pokemon p = new Pokemon {
+                            Pokemon pokemon = new Pokemon {
                                 IndexNumber = reader.CheckValue<int>("index_number"),
                                 Name = reader.CheckObject<string>("name"),
                                 Genus = reader.CheckObject<string>("genus"),
@@ -127,6 +127,7 @@ namespace PokemonStats_WPF.ViewModels {
                                 Habitat = reader.CheckObject<string>("habitat"),
                                 Habitat_Image = reader.CheckObject<byte[]>("habitat_image"),
                                 Footprint = reader.CheckObject<byte[]>("footprint"),
+                                EvolutionChainId = reader.CheckValue<int>("evolution_chain_id"),
                                 GenderRate = reader.CheckValue<int>("gender_rate"),
                                 CaptureRate = reader.CheckValue<int>("capture_rate"),
                                 BaseHappiness = reader.CheckValue<int>("base_happiness"),
@@ -143,38 +144,69 @@ namespace PokemonStats_WPF.ViewModels {
                                 Icon = reader.CheckObject<byte[]>("icon"),
                                 Sprite = reader.CheckObject<byte[]>("sprite")
                             };
-                            pokemons.Add(p);
+                            pokemons.Add(pokemon);
                         }
                     }
                 } // Command
+
+                foreach(Pokemon pokemon in pokemons) {
+                    pokemon.Forms = new List<Form>();
+                    using (IDbCommand command = database.CreateCommand()) {
+                        command.Connection = connection;
+                        command.CommandText = Query.GetSpecificForm;
+                        command.Prepare();
+                        command.AddWithValue("@species_id", pokemon.IndexNumber);
+                        using (IDataReader reader = command.ExecuteReader()) {
+                            while (reader.Read()) {
+                                Form form = new Form {
+                                    FormName = reader.CheckObject<string>("form_name") ?? string.Empty,
+                                    PokemonName = reader.CheckObject<string>("pokemon_name") ?? string.Empty,
+                                    IsDefault = reader.CheckValue<bool>("is_default"),
+                                    IsBattleOnly = reader.CheckValue<bool>("is_battle_only"),
+                                    IsMega = reader.CheckValue<bool>("is_mega"),
+                                    Icon = reader.CheckObject<byte[]>("icon"),
+                                    Sprite = reader.CheckObject<byte[]>("sprite")
+                                };
+                                pokemon.Forms.Add(form);
+                            }
+                        }
+                    } // Command
+
+                    pokemon.Evolutions = new List<Evolution>();
+                    using (IDbCommand command = database.CreateCommand()) {
+                        command.Connection = connection;
+                        command.CommandText = Query.GetSpecificEvolutionChain;
+                        command.Prepare();
+                        command.AddWithValue("@evolution_chain_id", pokemon.EvolutionChainId);
+                        using (IDataReader reader = command.ExecuteReader()) {
+                            while (reader.Read()) {
+                                Evolution evolution = new Evolution {
+                                    Name = reader.CheckObject<string>("name"),
+                                    Icon = reader.CheckObject<byte[]>("icon"),
+                                    EvolutionTrigger = reader.CheckObject<string>("evolution_trigger"),
+                                    TriggerItem = reader.CheckObject<string>("trigger_item"),
+                                    MinimumLevel = reader.CheckValue<int>("minimum_level"),
+                                    Location = reader.CheckObject<string>("location"),
+                                    KnownMove = reader.CheckObject<string>("known_move"),
+                                    KnownMoveType = reader.CheckObject<string>("known_move_type"),
+                                    HeldItem = reader.CheckObject<string>("held_item"),
+                                    TimeOfDay = reader.CheckObject<string>("time_of_day"),
+                                    MinimumHappiness = reader.CheckValue<int>("minimum_happiness"),
+                                    MinimumAffection = reader.CheckValue<int>("minimum_affection"),
+                                    RelativePhysicalStats = reader.CheckValue<int>("relative_physical_stats"),
+                                    PartySpecies = reader.CheckObject<string>("party_species"),
+                                    PartyType = reader.CheckObject<string>("party_type"),
+                                    TradeSpecies = reader.CheckObject<string>("trade_species"),
+                                    NeedsOverworldRain = reader.CheckValue<bool>("needs_overworld_rain"),
+                                    TurnUpsideDown = reader.CheckValue<bool>("turn_upside_down"),
+                                };
+                                pokemon.Evolutions.Add(evolution);
+                            }
+                        }
+                    } // Command
+                } // foreach
             }
             return pokemons;
-        }
-
-        public Form RetrievePokemonForm(int species_id) {
-            Form form = null;
-            using (IDbConnection connection = database.CreateOpenConnection()) {
-                using (IDbCommand command = database.CreateCommand()) {
-                    command.Connection = connection;
-                    command.CommandText = Query.GetSpecificForm;
-                    command.Prepare();
-                    command.AddWithValue("@species_id", species_id);
-                    using (IDataReader reader = command.ExecuteReader()) {
-                        while (reader.Read()) {
-                            form = new Form {
-                                FormName = reader.CheckObject<string>("form_name") ?? string.Empty,
-                                PokemonName = reader.CheckObject<string>("pokemon_name") ?? string.Empty,
-                                IsDefault = reader.CheckValue<bool>("is_default"),
-                                IsBattleOnly = reader.CheckValue<bool>("is_battle_only"),
-                                IsMega = reader.CheckValue<bool>("is_mega"),
-                                Icon = reader.CheckObject<byte[]>("icon"),
-                                Sprite = reader.CheckObject<byte[]>("sprite")
-                            };
-                        }
-                    }
-                } // Command
-            }
-            return form;
         }
 
         #region INotifyPropertyChanged

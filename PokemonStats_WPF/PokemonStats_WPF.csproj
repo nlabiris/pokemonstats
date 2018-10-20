@@ -80,6 +80,7 @@
     <Compile Include="DataAccess\PostgreSqlDatabase.cs" />
     <Compile Include="DataAccess\Query.cs" />
     <Compile Include="Helper\Utility.cs" />
+    <Compile Include="Models\Evolution.cs" />
     <Compile Include="Models\Form.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Models\Stats.cs" />
