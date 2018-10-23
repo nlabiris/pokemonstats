@@ -23,9 +23,11 @@ namespace PokemonStats_WPF.Models {
         public byte[] Habitat_Image { get; set; }
         public byte[] Footprint { get; set; }
         public int EvolutionChainId { get; set; }
+        public int? EvolvesFromSpeciesId { get; set; }
         public int GenderRate { get; set; }
         public int CaptureRate { get; set; }
         public int BaseHappiness { get; set; }
+        public bool IsBaby { get; set; }
         public int HatchCounter { get; set; }
         public long HatchSteps{ get; set; }
         public string GrowthRate { get; set; }

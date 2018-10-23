@@ -128,9 +128,11 @@ namespace PokemonStats_WPF.ViewModels {
                                 Habitat_Image = reader.CheckObject<byte[]>("habitat_image"),
                                 Footprint = reader.CheckObject<byte[]>("footprint"),
                                 EvolutionChainId = reader.CheckValue<int>("evolution_chain_id"),
+                                EvolvesFromSpeciesId = reader.CheckValue<int>("evolves_from_species_id"),
                                 GenderRate = reader.CheckValue<int>("gender_rate"),
                                 CaptureRate = reader.CheckValue<int>("capture_rate"),
                                 BaseHappiness = reader.CheckValue<int>("base_happiness"),
+                                IsBaby = reader.CheckValue<bool>("is_baby"),
                                 HatchCounter = reader.CheckValue<int>("hatch_counter"),
                                 HatchSteps = reader.CheckValue<long>("hatch_steps"),
                                 GrowthRate = reader.CheckObject<string>("growth_rate"),
@@ -173,6 +175,8 @@ namespace PokemonStats_WPF.ViewModels {
                     } // Command
 
                     pokemon.Evolutions = new List<Evolution>();
+                    int stage = 0;
+                    int i = 0;
                     using (IDbCommand command = database.CreateCommand()) {
                         command.Connection = connection;
                         command.CommandText = Query.GetSpecificEvolutionChain;
@@ -183,23 +187,44 @@ namespace PokemonStats_WPF.ViewModels {
                                 Evolution evolution = new Evolution {
                                     Name = reader.CheckObject<string>("name"),
                                     Icon = reader.CheckObject<byte[]>("icon"),
+                                    EvolvesFromSpeciesId = reader.CheckValue<int>("evolves_from_species_id"),
                                     EvolutionTrigger = reader.CheckObject<string>("evolution_trigger"),
                                     TriggerItem = reader.CheckObject<string>("trigger_item"),
                                     MinimumLevel = reader.CheckValue<int>("minimum_level"),
+                                    Gender = reader.CheckObject<string>("gender"),
                                     Location = reader.CheckObject<string>("location"),
                                     KnownMove = reader.CheckObject<string>("known_move"),
                                     KnownMoveType = reader.CheckObject<string>("known_move_type"),
                                     HeldItem = reader.CheckObject<string>("held_item"),
+                                    IsBaby = reader.CheckValue<bool>("is_baby"),
                                     TimeOfDay = reader.CheckObject<string>("time_of_day"),
                                     MinimumHappiness = reader.CheckValue<int>("minimum_happiness"),
                                     MinimumAffection = reader.CheckValue<int>("minimum_affection"),
-                                    RelativePhysicalStats = reader.CheckValue<int>("relative_physical_stats"),
+                                    MinimumBeauty = reader.CheckValue<int>("minimum_beauty"),
+                                    RelativePhysicalStats = !DBNull.Value.Equals(reader["relative_physical_stats"]) ? (int)reader["relative_physical_stats"] : (int?)null,
                                     PartySpecies = reader.CheckObject<string>("party_species"),
                                     PartyType = reader.CheckObject<string>("party_type"),
                                     TradeSpecies = reader.CheckObject<string>("trade_species"),
                                     NeedsOverworldRain = reader.CheckValue<bool>("needs_overworld_rain"),
                                     TurnUpsideDown = reader.CheckValue<bool>("turn_upside_down"),
                                 };
+                                if (pokemon.Evolutions.Count > 0) {
+                                    if (evolution.EvolvesFromSpeciesId != pokemon.Evolutions[i - 1].EvolvesFromSpeciesId) {
+                                        stage++;
+                                        i++;
+                                    }
+                                } else {
+                                    stage++;
+                                    i++;
+                                }
+
+                                if (evolution.IsBaby) {
+                                    evolution.Stage = 0;
+                                    stage = 0;
+                                } else {
+                                    evolution.Stage = stage;
+                                }
+                                
                                 pokemon.Evolutions.Add(evolution);
                             }
                         }
