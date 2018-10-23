@@ -194,8 +194,10 @@ SELECT `pokemon_species`.`id` AS `index_number`,
 `footprint`,
 `gender_rate`,
 `evolution_chain_id`,
+`evolves_from_species_id`,
 `capture_rate`,
 `base_happiness`,
+`is_baby`,
 `hatch_counter`,
 (
     `hatch_counter` * 257
@@ -483,8 +485,10 @@ SELECT `pokemon_species`.`id` AS `index_number`,
 `footprint`,
 `gender_rate`,
 `evolution_chain_id`,
+`evolves_from_species_id`,
 `capture_rate`,
 `base_happiness`,
+`is_baby`,
 `hatch_counter`,
 (
     `hatch_counter` * 257
@@ -614,6 +618,7 @@ SELECT
     WHERE `pokemon`.`species_id` = `pokemon_species`.`id`
     LIMIT 1
 ) AS `icon`,
+`evolves_from_species_id`,
 (
     SELECT `evolution_trigger_prose`.`name`
     FROM `evolution_trigger_prose`
@@ -630,6 +635,12 @@ SELECT
     LIMIT 1
 ) AS `trigger_item`,
 `pokemon_evolution`.`minimum_level`,
+(
+    SELECT `identifier`
+    FROM `genders`
+    WHERE `genders`.`id` = `pokemon_evolution`.`gender_id`
+    LIMIT 1
+) AS `gender`,
 (
     SELECT `location_names`.`name`
     FROM `location_names`
@@ -658,9 +669,11 @@ SELECT
     AND `item_names`.`local_language_id` = 9
     LIMIT 1
 ) AS `held_item`,
+`pokemon_species`.`is_baby`,
 `pokemon_evolution`.`time_of_day`, 
 `pokemon_evolution`.`minimum_happiness`,
 `pokemon_evolution`.`minimum_affection`,
+`pokemon_evolution`.`minimum_beauty`,
 `pokemon_evolution`.`relative_physical_stats`,
 (
     SELECT `pokemon_species_names`.`name`
