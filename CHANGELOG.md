@@ -5,6 +5,17 @@ All notable changes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [0.2.0-beta] - 2018-10-23
+### Added
+- Added `ByteToImage` method in `Utilities` class as static
+- Add extra data in `Evolution` class
+- Add extra data in `Pokemon` class
+- Calculate evolution stage for each pokemon based in the evolution chain
+- Added description for each evolution
+
+### Changed
+- Change evolution layout
+
 ## [0.1.1-beta] - 2018-10-20
 ### Added
 - Pokemon evolution chains, query and first implementation in XAML (alpha)
@@ -54,3 +65,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.0.2-alpha]: https://github.com/nlabiris/pokemonstats/compare/v0.0.2...HEAD
 [0.0.3-alpha]: https://github.com/nlabiris/pokemonstats/compare/v0.0.3...HEAD
 [0.1.0-beta]: https://github.com/nlabiris/pokemonstats/compare/v0.1.0...HEAD
+[0.1.1-beta]: https://github.com/nlabiris/pokemonstats/compare/v0.1.1...HEAD
+[0.2.0-beta]: https://github.com/nlabiris/pokemonstats/compare/v0.2.0...HEAD
