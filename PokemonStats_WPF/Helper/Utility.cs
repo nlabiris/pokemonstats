@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace PokemonStats_WPF.Helper {
     public static class Utility {
@@ -54,6 +57,14 @@ namespace PokemonStats_WPF.Helper {
 
         public static double KgToLb(double kg) {
             return kg / 0.45359237;
+        }
+
+        public static ImageSource ByteToImage(byte[] imageData) {
+            BitmapImage biImg = new BitmapImage();
+            biImg.BeginInit();
+            biImg.StreamSource = new MemoryStream(imageData);
+            biImg.EndInit();
+            return biImg as ImageSource;
         }
     }
 }

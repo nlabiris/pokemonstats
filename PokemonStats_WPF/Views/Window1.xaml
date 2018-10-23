@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PokemonStats_WPF.Views"
         xmlns:converters ="clr-namespace:PokemonStats_WPF.Views.Converters"
         mc:Ignorable="d"
-        Title="{Binding SelectedPokemonWindowTitle}" Height="450" Width="1100">
+        Title="{Binding SelectedPokemonWindowTitle}" Height="750" Width="1700">
     <Window.Resources>
         <Style TargetType="{x:Type Border}">
             <Setter Property="BorderThickness" Value="1"/>
@@ -34,6 +34,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -241,38 +242,61 @@
                         </GroupBox.Header>
                         <Grid Name="gridEvolution">
                             <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <!--<Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Center" Padding="37" Margin="5,0,5,0" BorderBrush="Brown" Background="Aquamarine">
+                            <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Baby</TextBlock>
+                            <!--<Border Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" BorderBrush="Brown" Background="Aquamarine">
                                 <WrapPanel>
-                                    <TextBlock Padding="15">[Icon]</TextBlock>
-                                    <StackPanel Margin="17">
+                                    <TextBlock>[Icon]</TextBlock>
+                                    <StackPanel>
                                         <TextBlock>Polywag</TextBlock>
                                         <TextBlock FontSize="10">A small description</TextBlock>
                                     </StackPanel>
                                 </WrapPanel>
-                            </Border>
-                            <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" Padding="37" Margin="5,0,5,0" BorderBrush="Brown" Background="Aquamarine">
+                            </Border>-->
+                            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Basic</TextBlock>
+                            <!--<Border Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" BorderBrush="Brown" Background="Aquamarine">
                                 <WrapPanel>
-                                    <TextBlock Padding="15">[Icon]</TextBlock>
-                                    <StackPanel Margin="17">
+                                    <TextBlock>[Icon]</TextBlock>
+                                    <StackPanel>
                                         <TextBlock>Polywag</TextBlock>
                                         <TextBlock FontSize="10">A small description</TextBlock>
                                     </StackPanel>
                                 </WrapPanel>
-                            </Border>
-                            <Border Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Center" Padding="37" Margin="5,0,5,0" BorderBrush="Brown" Background="Aquamarine">
+                            </Border>-->
+                            <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Stage 1</TextBlock>
+                            <!--<Border Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" BorderBrush="Brown" Background="Aquamarine">
                                 <WrapPanel>
-                                    <TextBlock Padding="15">[Icon]</TextBlock>
-                                    <StackPanel Margin="17">
+                                    <TextBlock>[Icon]</TextBlock>
+                                    <StackPanel>
                                         <TextBlock>Polywag</TextBlock>
+                                        <TextBlock FontSize="10">A small description</TextBlock>
+                                    </StackPanel>
+                                </WrapPanel>
+                            </Border>-->
+                            <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Stage 2</TextBlock>
+                            <!--<Border Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" BorderBrush="Brown" Background="Aquamarine">
+                                <WrapPanel>
+                                    <TextBlock>[Icon]</TextBlock>
+                                    <StackPanel>
+                                        <TextBlock>Politoed</TextBlock>
                                         <TextBlock FontSize="10">A small description</TextBlock>
                                     </StackPanel>
                                 </WrapPanel>
